@@ -1,0 +1,103 @@
+body
+{
+	font-family: 'Montserrat', sans-serif;
+}
+#board>*
+{
+	display: none;
+}
+
+#timer
+{
+	position: absolute;
+	width: 15%;
+	min-height: 50px;
+	top:0;
+	right:0;
+	font-family: 'Saira Stencil One', cursive;
+}
+
+
+#levelselector select
+{
+	width: 100px;
+	height: 50px;
+	font-size: 1.5em;
+}
+
+#heading
+{
+	position: absolute;
+	width: 40%;
+	top:0;
+	left: 30%;
+	text-align: center;
+}
+#heading h1
+{
+	margin: 0;
+}
+
+
+#board
+{
+	position: absolute;
+	background-color: lightgreen;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
+	border-radius: 5px;
+	box-shadow: 10px 10px 30px grey;
+}
+
+#grid
+{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+}
+
+
+#grid ul
+{
+	margin:0;
+	padding: 0;
+}
+
+#grid ul li
+{
+	display: inline-block;
+	position: relative;
+	width: 25px;
+	height: 25px;
+	border:0.5px solid black;
+	background-color:#F8F272;
+	margin-top: -4px;
+}
+
+
+#grid ul li:hover
+{
+	cursor: pointer;
+}
+
+
+#grid>ul>li>p
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin:0;
+	text-align: center;
+	padding: 0;
+}
+
+
+
+
+@keyframes showboard
+{
+	0%{top:50%;left:50%;height: 0;width: 0;}
+	100%{top:25%;left: 25%;height: 50%;width: 50%;}
+}
