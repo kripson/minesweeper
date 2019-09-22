@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Minesweeper</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="game.css">
@@ -36,10 +37,18 @@
 
 	</div>
 
-	<script
+	<audio id="myAudio">
+  	<source src="Bomb.mp3" type="audio/mpeg">
+  	Your browser does not support the audio element.
+	</audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/boot.min.js"></script>
+    <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
   <script type="text/javascript" src = "script.js"></script>
+  <script type="text/javascript" src = "test.js"></script>
 </body>
 </html>

@@ -1,4 +1,8 @@
-var timer;
+bomb = document.getElementById("myAudio");
+ 
+
+
+// Function to run when a user clicks a cell
 function changebackground(element)
 {
 	var eclass = element.getAttribute("class");
@@ -10,8 +14,10 @@ function changebackground(element)
 			cell.style.backgroundSize = "contain";
 			cell.style.backgroundImage = "url('https://cdn.imgbin.com/12/10/9/imgbin-minesweeper-pro-classic-mine-sweeper-minesweeper-plus-likeminesweeper-bomb-zMHypRPh43qNLA8sm63wt419s.jpg')";
 		}
-		alert("You stepped on a mine... Game Over");
-		clearInterval(timer);
+		bomb.play(); 
+		// alert("You stepped on a mine... Game Over");
+		clearInterval(this.timer);
+
 		
 
 	}
@@ -23,6 +29,8 @@ function changebackground(element)
 };
 
 
+
+// Function to reveal the clicked cell and neighbouring cells
 function revealcells(focalpoint)
 {
 	var originalFocalPoint = focalpoint;
@@ -116,11 +124,10 @@ function revealcells(focalpoint)
 		}
 		
 	}
-	
-
-		
-
 }
+
+
+//function for setting up the mines
 function setupmines()
 {
 	var cells = document.getElementsByClassName('cell');
@@ -241,19 +248,11 @@ function setupmines()
 
 }
 
-$(document).ready(function()
-{
-	$('#board').css("animation-name","showboard");
-	timer = setTimeout(() => {
-		$('#board *').css("display","block")
-	},1500);
-
-	
-
+//function to start timer
 function starttimer()
 {
 	var seconds = 1;
-	timer = setInterval(function(){
+	this.timer = setInterval(function(){
 		$('#time').text(`Score: ${seconds}`);
 		seconds++;
 	},1000);
@@ -274,17 +273,45 @@ function drawgrid()
 }
 
 
+// Minesweeper game Object
+
+function Minesweeper() {
+  this.level;
+  this.highscore;
+  this.timer;
+
+  this.changebackground = function(element){ changebackground(element)};
+  this.revealcells = function(focalpoint){ revealcells(focalpoint)};
+  this.setupmines = function(){ setupmines()};
+  this.starttimer = function(){ starttimer()};
+  this.drawgrid = function(){ drawgrid() };
+
+
+}
 
 
 
 
+
+
+
+$(document).ready(function()
+{
+	//When browser window opens new game instance is created
+	var game = new Minesweeper();
+	$('#board').css("animation-name","showboard");
+	setTimeout(() => {
+		$('#board *').css("display","block")
+	},1500);
+
+// When start button is pressed the following functions are invoked and a game session is started
 $("#start button").click(function()
 {
 	if(!$("#time").text())
 	{
-		starttimer();
-		drawgrid();
-		setupmines();
+		game.starttimer();
+		game.drawgrid();
+		game.setupmines();
 	}
 	else
 	{
