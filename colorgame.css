@@ -71,11 +71,10 @@ body
 {
 	display: inline-block;
 	position: relative;
-	width: 25px;
-	height: 25px;
+	width: 35.7142857px;
+	height: 35.7142857px;
 	border:0.5px solid black;
 	background-color:#0F7EED;
-	box-shadow:2px 2px 5px 0.5px #155595 inset; 
 	margin-top: -4px;
 }
 

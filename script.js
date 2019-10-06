@@ -1,6 +1,6 @@
 bomb = document.getElementById("myAudio");
  
-
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 // Function to run when a user clicks a cell
 function changebackground(element)
@@ -38,39 +38,61 @@ function revealcells(focalpoint)
 	var cells = Array.from(document.getElementsByClassName("cell"));
 	var directions = ["northwest","north","northeast","east","southeast","south","southwest","west"];
 	var direction = directions[Math.floor(Math.random() * 8)];
-	var firstcloumn = [0,10,20,30,40,50,60,70,80,90];
-	var lastcolumn = [9,19,29,39,49,59,69,79,89,99];
+	if(this.level.value === "Easy")
+	{
+		var numberofcells = 10;
+	}
+	else
+	{
+		var numberofcells = 15;
+	}
+	if(this.level.value === "Easy")
+	{
+		var firstcloumn = [0,10,20,30,40,50,60,70,80,90];
+		var lastcolumn = [9,19,29,39,49,59,69,79,89,99];
+
+	}
+	else
+	{
+			var firstcloumn = [0,15,30,45,60,75,90,105,120,135,150,165,180,195,210];
+			var lastcolumn = [14,29,44,59,74,89,104,119,134,149,164,179,194,209,224];
+	
+	}
 
 	for(var x = 1; x < revealnumber; x++)
 	{
 		try
 		{
-				if($(cells[focalpoint]).attr("class") !== "cell mine")
+				if($(cells[focalpoint]).attr("class") !== "cell mine" && $(cells[focalpoint]).css("background-color") !== "yellow")
 			{
 				if(direction === "northwest" && !firstcloumn.includes(focalpoint))
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
-					focalpoint -= 11;
+					focalpoint -= numberofcells -1;
 				}
 				else if (direction === "north")
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
-					focalpoint -= 10;
+					focalpoint -= numberofcells;
 				}
 				else if (direction === "northeast" && !lastcolumn.includes(focalpoint))
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
-					focalpoint -= 9;
+					focalpoint -= numberofcells + 1;
 				}
 				else if (direction === "east" && !lastcolumn.includes(focalpoint))
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
 					focalpoint += 1;
@@ -78,27 +100,31 @@ function revealcells(focalpoint)
 				else if (direction === "southeast" && !lastcolumn.includes(focalpoint))
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
-					focalpoint += 11;
+					focalpoint += numberofcells + 1;
 				}
 				else if (direction === "south")
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
-					focalpoint += 10;
+					focalpoint += numberofcells;
 				}
 				else if (direction === "southwest" && !firstcloumn.includes(focalpoint))
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
-					focalpoint += 9;
+					focalpoint += numberofcells - 1;
 				}
 				else if (direction === "west" && !firstcloumn.includes(focalpoint))
 				{
 					var minenumber = $(cells[focalpoint]).val();
+					$(cells[focalpoint]).css("box-shadow","none");
 					$(cells[focalpoint]).css("background-color","white");
 					$(cells[focalpoint]).html(`<p>${minenumber}</p>`);
 					focalpoint -= 1;
@@ -132,16 +158,46 @@ function setupmines()
 {
 	var cells = document.getElementsByClassName('cell');
 	var mineindex = [];
-	var firstcloumn = [0,10,20,30,40,50,60,70,80,90];
-	var lastcolumn = [9,19,29,39,49,59,69,79,89,99];
+
+
+	if(this.level.value === "Easy")
+	{
+		var numberofcells = 10;
+		var totalcells = 100;
+	}
+	else
+	{
+		var numberofcells = 15;
+		var totalcells = 225;
+	}
+	if(this.level.value === "Easy")
+	{
+		var firstcloumn = [0,10,20,30,40,50,60,70,80,90];
+		var lastcolumn = [9,19,29,39,49,59,69,79,89,99];
+
+	}
+	else
+	{
+			var firstcloumn = [0,15,30,45,60,75,90,105,120,135,150,165,180,195,210];
+			var lastcolumn = [14,29,44,59,74,89,104,119,134,149,164,179,194,209,224];
+	
+	}
+	
+
+
 	while(true)
 	{
-		var mine = Math.floor(Math.random() * 100);
+		var mine = Math.floor(Math.random() * totalcells);
 		if(!mineindex.includes(mine))
 		{
 			mineindex.push(mine);
 		}
-		if(mineindex.length >= 20)
+
+		if(mineindex.length >= 20 && this.level.value === "Easy")
+		{
+			break;
+		}
+		if(mineindex.length >= 30 && (this.level.value === "Medium" || this.level.value === "Hard"))
 		{
 			break;
 		}		
@@ -154,8 +210,8 @@ function setupmines()
 		{
 			if(!firstcloumn.includes(position) )
 			{
-			var minenumber = Number(cells[position - 11].getAttribute("value"));
-			cells[position - 11].setAttribute("value",minenumber + 1);
+			var minenumber = Number(cells[position - numberofcells - 1].getAttribute("value"));
+			cells[position - numberofcells - 1].setAttribute("value",minenumber + 1);
 			}
 		}
 		catch
@@ -164,8 +220,8 @@ function setupmines()
 		}
 		try
 		{
-			var minenumber = Number(cells[position - 10].getAttribute("value"));
-			cells[position - 10].setAttribute("value",minenumber + 1);
+			var minenumber = Number(cells[position - numberofcells].getAttribute("value"));
+			cells[position - numberofcells].setAttribute("value",minenumber + 1);
 		}
 		catch
 		{
@@ -175,8 +231,8 @@ function setupmines()
 		{
 			if(!lastcolumn.includes(position) )
 			{
-				var minenumber = Number(cells[position - 9].getAttribute("value"));
-				cells[position - 9].setAttribute("value",minenumber + 1);
+				var minenumber = Number(cells[position - numberofcells + 1].getAttribute("value"));
+				cells[position - numberofcells + 1].setAttribute("value",minenumber + 1);
 			}
 			
 		}
@@ -212,8 +268,8 @@ function setupmines()
 		{
 			if(!firstcloumn.includes(position) )
 			{
-			var minenumber = Number(cells[position + 9].getAttribute("value"));
-			cells[position + 9].setAttribute("value",minenumber + 1);
+			var minenumber = Number(cells[position + numberofcells - 1].getAttribute("value"));
+			cells[position + numberofcells - 1].setAttribute("value",minenumber + 1);
 			}
 		}
 		catch
@@ -222,8 +278,8 @@ function setupmines()
 		}
 		try
 		{
-			var minenumber = Number(cells[position + 10].getAttribute("value"));
-			cells[position + 10].setAttribute("value",minenumber + 1);
+			var minenumber = Number(cells[position + numberofcells].getAttribute("value"));
+			cells[position + numberofcells].setAttribute("value",minenumber + 1);
 		}
 		catch
 		{
@@ -233,8 +289,8 @@ function setupmines()
 		{
 			if(!lastcolumn.includes(position) )
 			{
-			var minenumber = Number(cells[position + 11].getAttribute("value"));
-			cells[position + 11].setAttribute("value",minenumber + 1);
+			var minenumber = Number(cells[position + numberofcells + 1].getAttribute("value"));
+			cells[position + numberofcells + 1].setAttribute("value",minenumber + 1);
 			}
 		}
 		catch
@@ -258,36 +314,91 @@ function starttimer()
 	},1000);
 }
 
+//function to restart timer
+function restarttimer()
+{
+	clearInterval(this.timer);
+	var seconds = 1;
+	this.timer = setInterval(function(){
+		$('#time').text(`Score: ${seconds}`);
+		seconds++;
+	},1000);
+}
+
+function markmine()
+{
+	var cell = event.target;
+	cell.style.backgroundColor = "yellow";
+}
+
 
 function drawgrid()
 {
 	var gridsetup = "";
-	for(var rows = 1; rows <= 100; rows++)
+	if(this.level.value === "Easy")
 	{
-		gridsetup += `<li class = 'cell' value = 0 onclick = 'changebackground(this)'></li>`;
+		var numberofcells = 100;
+	}
+	else
+	{
+		var numberofcells = 225;
+	}
+	for(var cells = 1; cells <= numberofcells; cells++)
+	{
+		gridsetup += `<li class = 'cell' value = 0 oncontextmenu = "markmine()" onclick = 'changebackground(this)'></li>`;
 	}
 	$("#grid ul").html(gridsetup);
+	if(this.level.value === "Easy")
+	{
+		$("#grid").css({"position":"relative","width":"260px"});
+	}
+	else
+	{
+		$("#grid").css({"position":"relative","width":"390px"});
+	}
 
-	$("#grid").css({"position":"relative","width":"260px"});
+
 	
+
+	
+}
+
+function setlevel()
+{
+	this.level = event.target;
+	if(event.target.value === "Medium" || event.target.value === "Hard")
+	{
+		$("#board").css({"min-height":"600px"});
+	}
+	else
+	{
+		$("#board").css({"min-height":"500px"});
+	}
 }
 
 
 // Minesweeper game Object
 
-function Minesweeper() {
-  this.level;
-  this.highscore;
-  this.timer;
+class Minesweeper {
+  #level;
+  #highscore;
+  #timer;
+  constructor() {
+   
+  }
 
-  this.changebackground = function(element){ changebackground(element)};
-  this.revealcells = function(focalpoint){ revealcells(focalpoint)};
-  this.setupmines = function(){ setupmines()};
-  this.starttimer = function(){ starttimer()};
-  this.drawgrid = function(){ drawgrid() };
+  changebackground = function(element){ changebackground(element)};
+  revealcells = function(focalpoint){ revealcells(focalpoint)};
+  setupmines = function(){ setupmines()};
+  starttimer = function(){ starttimer()};
+  restarttimer = function(){ restarttimer()};
+  drawgrid = function(){ drawgrid() };
+  setlevel = setlevel;
+
 
 
 }
+
 
 
 
@@ -307,15 +418,18 @@ $(document).ready(function()
 // When start button is pressed the following functions are invoked and a game session is started
 $("#start button").click(function()
 {
-	if(!$("#time").text())
+	if($("#start button").text() === "Start")
 	{
 		game.starttimer();
 		game.drawgrid();
 		game.setupmines();
+		$("#start button").text("Restart");
 	}
 	else
 	{
-
+		game.restarttimer();
+		game.drawgrid();
+		game.setupmines();
 	}
 
 }
