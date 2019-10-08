@@ -30,6 +30,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - 8].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -49,6 +50,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - 7].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -68,6 +70,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - 6].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -87,6 +90,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - 1].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -106,6 +110,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint + 1].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -125,6 +130,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - (-6)].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -144,6 +150,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - (-7)].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}
@@ -163,6 +170,7 @@ function checkgame(focalpoint)
 				&& cells[focalpoint].getAttribute("data-blue") === cells[focalpoint - (-8)].getAttribute("data-blue"))
 						{
 							alert("Game Over, You broke the colouring rule");
+							clearInterval(this.timer);
 						}
 
 		}

@@ -15,7 +15,8 @@ function changebackground(element)
 			cell.style.backgroundImage = "url('https://cdn.imgbin.com/12/10/9/imgbin-minesweeper-pro-classic-mine-sweeper-minesweeper-plus-likeminesweeper-bomb-zMHypRPh43qNLA8sm63wt419s.jpg')";
 		}
 		bomb.play(); 
-		// alert("You stepped on a mine... Game Over");
+		//alert("You stepped on a mine... Game Over");
+		$("#message").text("You stepped on a mine... Game Over");
 		clearInterval(this.timer);
 
 		
@@ -383,6 +384,7 @@ class Minesweeper {
   #level;
   #highscore;
   #timer;
+  #grid = document.getElementById("#grid");
   constructor() {
    
   }
@@ -412,7 +414,7 @@ $(document).ready(function()
 	var game = new Minesweeper();
 	$('#board').css("animation-name","showboard");
 	setTimeout(() => {
-		$('#board *').css("display","block")
+		$('#board>*').css("display","block")
 	},1500);
 
 // When start button is pressed the following functions are invoked and a game session is started
@@ -427,6 +429,7 @@ $("#start button").click(function()
 	}
 	else
 	{
+		$("#message").text("");
 		game.restarttimer();
 		game.drawgrid();
 		game.setupmines();
